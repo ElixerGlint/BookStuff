@@ -30,24 +30,7 @@ class Book {
         ++count;
     }
 
-    public static boolean bringToFront(Book[] shelf, Book b) {
-        int location = -1;
-        for(int i = 0; i < shelf.length; i++) {
-            if(shelf[i] == b) {
-                location = i;
-                break;
-            }
-        }
-        if(location == -1) {
-            return false; //ERROR
-        }
-        
-        Book temp = shelf[0];
-        shelf[0] = b;
-        shelf[location] = temp;
-
-        return true;
-    }
+    
 
     @Override
     public String toString() {
@@ -89,4 +72,5 @@ class Book {
     static void showCount() {
         System.out.println("count = " + count);
     }
+
 }
