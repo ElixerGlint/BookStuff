@@ -1,80 +1,92 @@
-class Book
-{
-   private String title;
-   private int pubYear; // publication year
-   private String[] authors;
+import java.util.Arrays;
 
-   private static int count;
-   Book()
-   {
-      this("TBD");
-   }	
+class Book {
+    private String title;
+    private int pubYear; // publication year
+    private String[] authors;
 
-   Book(String title)
-   {
-      this(title, -1);
-   }
+    private static int count;
 
-   Book(String title, int pubYear)
-   {
-      this(title, pubYear, "");
-   }
+    Book() {
+        this("TBD");
+    }
 
-   Book(String title, int pubYear, String author)
-   {
-      this(title, pubYear, new String[] { author });
-   }
+    Book(String title) {
+        this(title, -1);
+    }
 
-   Book(String title, int pubYear, String[] authors)
-   {
-      setTitle(title);
-      setPubYear(pubYear);
-      setAuthors(authors);
-      ++count;
-   }
+    Book(String title, int pubYear) {
+        this(title, pubYear, "");
+    }
 
-   String getTitle()
-   {
-      return title;
-   }
+    Book(String title, int pubYear, String author) {
+        this(title, pubYear, new String[] { author });
+    }
 
-   int getPubYear()
-   {
-      return pubYear;
-   }
+    Book(String title, int pubYear, String[] authors) {
+        setTitle(title);
+        setPubYear(pubYear);
+        setAuthors(authors);
+        ++count;
+    }
 
-   String getAuthor()
-   {
-      return authors[0];
-   }
+    public static boolean bringToFront(Book[] shelf, Book b) {
+        int location = -1;
+        for(int i = 0; i < shelf.length; i++) {
+            if(shelf[i] == b) {
+                location = i;
+                break;
+            }
+        }
+        if(location == -1) {
+            return false; //ERROR
+        }
+        
+        Book temp = shelf[0];
+        shelf[0] = b;
+        shelf[location] = temp;
 
-   String[] getAuthors()
-   {
-      return authors;
-   }
+        return true;
+    }
 
-   void setTitle(String title)
-   {
-      this.title = title;
-   }
+    @Override
+    public String toString() {
+        return "Book [title=" + title + ", pubYear=" + pubYear + ", authors=" + Arrays.toString(authors) + "]";
+    }
 
-   void setPubYear(int pubYear)
-   {
-      this.pubYear = pubYear;
-   }
+    String getTitle() {
+        return title;
+    }
 
-   void setAuthor(String author)
-   {
-      setAuthors(new String[] { author });
-   }
+    int getPubYear() {
+        return pubYear;
+    }
 
-   void setAuthors(String[] authors)
-   {
-      this.authors = authors;
-   }
+    String getAuthor() {
+        return authors[0];
+    }
 
-   static void showCount()
-   {
-      System.out.println("count = " + count);
-   }
+    String[] getAuthors() {
+        return authors;
+    }
+
+    void setTitle(String title) {
+        this.title = title;
+    }
+
+    void setPubYear(int pubYear) {
+        this.pubYear = pubYear;
+    }
+
+    void setAuthor(String author) {
+        setAuthors(new String[] { author });
+    }
+
+    void setAuthors(String[] authors) {
+        this.authors = authors;
+    }
+
+    static void showCount() {
+        System.out.println("count = " + count);
+    }
 }
